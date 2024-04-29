@@ -18,12 +18,12 @@ try {
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
         $CP = $_POST['codePostal'];
-        $modifRequest = "UPDATE client SET nom='$nom', prenom='$prenom' ,Code_postal='$CP'  where id_réalisateur = '$id'";
+        $modifRequest = "UPDATE client SET nom='$nom', prenom='$prenom' ,Code_postal='$CP'  where id_client = '$id'";
         $db->query($modifRequest);
     }
     // 
     else if (isset($_POST["delete"])) {
-        $removeRequest = "DELETE FROM client WHERE id_réalisateur=" . $_POST["delete"];
+        $removeRequest = "DELETE FROM client WHERE id_client=" . $_POST["delete"];
         $db->query($removeRequest);
     }
     // 
@@ -87,29 +87,29 @@ try {
             <?php foreach ($dataDb as $index => $value) { ?>
                 <tr>
                     <!--  -->
-                    <?php if (isset($_POST["update"]) && $_POST["update"] == $value["id_réalisateur"]) { ?>
+                    <?php if (isset($_POST["update"]) && $_POST["update"] == $value["id_client"]) { ?>
                         <!--  -->
-                        <td><?php echo $value["id_réalisateur"] ?></td>
+                        <td><?php echo $value["id_client"] ?></td>
                         <td><input name="nom" value="<?php echo $value["nom"] ?>" /></td>
                         <td><input name="prenom" value="<?= $value["prenom"] ?>" /></td>
                         <td><input name="codePostal" value="<?= $value["Code_postal"] ?>" /></td>
                         <td>
                             <!--  -->
-                            <button name="confirm" value="<?php echo $value["id_réalisateur"] ?>">Confirmer</button>
+                            <button name="confirm" value="<?php echo $value["id_client"] ?>">Confirmer</button>
                             <!--  -->
                         <?php } else { ?>
                             <!--  -->
-                        <td><?php echo $value["id_réalisateur"] ?></td>
+                        <td><?php echo $value["id_client"] ?></td>
                         <td><?= $value["nom"] ?></td>
                         <td><?= $value["prenom"] ?></td>
                         <td><?= $value["Code_postal"] ?></td>
                         <td>
                             <!--  -->
-                            <button name="update" value="<?php echo $value["id_réalisateur"] ?>">Modifier</button>
+                            <button name="update" value="<?php echo $value["id_client"] ?>">Modifier</button>
                             <!--  -->
                         <?php } ?>
                         <!--  -->
-                        <button name="delete" value="<?php echo $value["id_réalisateur"] ?>">Supprimer</button>
+                        <button name="delete" value="<?php echo $value["id_client"] ?>">Supprimer</button>
                         </td>
                 </tr>
                 <!--  -->
