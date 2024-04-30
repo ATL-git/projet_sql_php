@@ -13,9 +13,9 @@ try {
         $nom = $_POST["username"];
         $password = $_POST["password"];
         $usernamePattern = "/^[a-zA-Z0-9_-]+$/";
-        $passwordPattern = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+        $passwordPattern = "/^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{4,10}$/";
 
-        if (!preg_match($usernamePattern, $passwordPattern)) {
+        if (preg_match($usernamePattern, $passwordPattern)) {
             $error = "veuillez remplir les champs avec des caracteres valides";
         } else {
             $requeteSQL = "SELECT id_client FROM client where nom='$nom' and password= '$password'";
@@ -25,7 +25,7 @@ try {
                 header("Location:indexbrendan.php");
                 exit();
             } else {
-                $error = "Username ou mot de passe introuvable";
+                $error = "Nom ou mot de passe introuvable";
             }
         }
     }
